@@ -1,0 +1,8 @@
+/* Base styles */
+body {
+  font-family: var(--ff);
+  font-size: var(--fs-neutral);
+  font-weight: var(--fw);
+  color: var(--clr-txt-dark--th1);
+  background-color: white;
+}

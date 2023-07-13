@@ -1,9 +1,12 @@
+import styles from "./App.module.css";
+
 export default function App() {
   return (
-    <div className="app-container">
+    <div className={styles.container}>
       <h1 className="sr-only">Calculator App</h1>
-      <div className="calculator">
-        <header>
+
+      <div className={styles.calculator}>
+        <header className={styles.calculator__header}>
           <p>calc</p>
           <div className="theme-toggler">
             <p>THEME</p>
@@ -11,8 +14,9 @@ export default function App() {
           </div>
         </header>
 
-        <div className="calculator__screen">399,981</div>
-        <div className="calculator__keypad">
+        <div className={styles.calculator__screen}>399,981</div>
+
+        <div className={styles.calculator__keypad}>
           <button type="button">7</button>
           <button type="button">8</button>
           <button type="button">9</button>

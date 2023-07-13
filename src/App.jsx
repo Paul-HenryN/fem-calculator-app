@@ -33,8 +33,12 @@ export default function App() {
           <button type="button">0</button>
           <button type="button">/</button>
           <button type="button">x</button>
-          <button type="button">RESET</button>
-          <button type="button">=</button>
+          <button type="button" className="grid-col-span-2">
+            RESET
+          </button>
+          <button type="button" className="grid-col-span-2">
+            =
+          </button>
         </div>
       </div>
     </div>

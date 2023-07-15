@@ -31,6 +31,9 @@ const reducer = (state, action) => {
       }
 
       return { ...state, screenContent: state.screenContent.slice(0, -1) };
+
+    case actions.RESET:
+      return { screenContent: "0", operand: NaN, operation: "" };
   }
 };
 

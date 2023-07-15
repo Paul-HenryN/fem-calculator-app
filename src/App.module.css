@@ -3,13 +3,16 @@
   background-color: var(--clr-primary-dark-300--th1);
   color: var(--clr-txt-light--th1);
 
-  padding: 0.75em;
+  display: grid;
+  place-items: center;
 }
 
 .calculator {
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
+
+  width: clamp(20rem, 80%, 30rem);
 }
 .calculator__header {
   display: flex;

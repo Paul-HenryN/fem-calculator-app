@@ -15,3 +15,14 @@
 .grid-col-span-2 {
   grid-column: span 2;
 }
+
+/* Typography */
+.fs-big {
+  font-size: var(--fs-big);
+}
+.fs-medium {
+  font-size: var(--fs-medium);
+}
+.fs-small {
+  font-size: var(--fs-small);
+}

@@ -13,6 +13,10 @@ function toNumber(str) {
   return parseFloat(str.replace(/,/g, ""));
 }
 
+function format(str) {
+  return toOutput(toNumber(str));
+}
+
 const reducer = (state, action) => {
   let result = 0;
 
@@ -37,9 +41,7 @@ const reducer = (state, action) => {
 
       return {
         ...state,
-        screenContent: toOutput(
-          toNumber(`${state.screenContent}${action.value}`)
-        ),
+        screenContent: format(`${state.screenContent}${action.value}`),
       };
 
     case actions.DELETE:
@@ -47,7 +49,10 @@ const reducer = (state, action) => {
         return { ...state, screenContent: "0" };
       }
 
-      return { ...state, screenContent: state.screenContent.slice(0, -1) };
+      return {
+        ...state,
+        screenContent: format(state.screenContent.slice(0, -1)),
+      };
 
     case actions.RESET:
       return { screenContent: "0", operand: NaN, operation: "" };
@@ -102,18 +107,22 @@ export default function App() {
           <header className={styles.calculator__header}>
             <p>calc</p>
             <div className="theme-toggler">
-              <p>THEME</p>
+              <p className="fs-small">THEME</p>
               <div className="toggle"></div>
             </div>
           </header>
 
-          <div className={styles.calculator__screen}>{state.screenContent}</div>
+          <div className={`${styles.calculator__screen} fs-big`}>
+            {state.screenContent}
+          </div>
 
           <div className={styles.calculator__keypad}>
             <Button>7</Button>
             <Button>8</Button>
             <Button>9</Button>
-            <Button action={actions.DELETE}>DEL</Button>
+            <Button className="fs-medium" action={actions.DELETE}>
+              DEL
+            </Button>
             <Button>4</Button>
             <Button>5</Button>
             <Button>6</Button>
@@ -126,10 +135,16 @@ export default function App() {
             <Button>0</Button>
             <Button action={actions.SET_OPERATION}>/</Button>
             <Button action={actions.SET_OPERATION}>x</Button>
-            <Button className="grid-col-span-2" action={actions.RESET}>
+            <Button
+              className="fs-medium grid-col-span-2"
+              action={actions.RESET}
+            >
               RESET
             </Button>
-            <Button className="grid-col-span-2" action={actions.COMPUTE}>
+            <Button
+              className="fs-medium grid-col-span-2"
+              action={actions.COMPUTE}
+            >
               =
             </Button>
           </div>

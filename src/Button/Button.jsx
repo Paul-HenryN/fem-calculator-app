@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { CalculatorContext } from "../App";
 import { actions } from "../globals";
+import styles from "./Button.module.css";
 
 export default function Button({
   children,
@@ -12,7 +13,7 @@ export default function Button({
   return (
     <button
       type="button"
-      className={className}
+      className={`${styles.btn} ${className}`}
       onClick={() => dispatch({ type: action, value: children })}
     >
       {children}

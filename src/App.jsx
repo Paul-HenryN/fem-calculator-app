@@ -24,6 +24,13 @@ const reducer = (state, action) => {
         ...state,
         screenContent: `${state.screenContent}${action.value}`,
       };
+
+    case actions.DELETE:
+      if (state.screenContent.length === 1) {
+        return { ...state, screenContent: "0" };
+      }
+
+      return { ...state, screenContent: state.screenContent.slice(0, -1) };
   }
 };
 

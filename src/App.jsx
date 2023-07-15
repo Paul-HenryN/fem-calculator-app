@@ -1,11 +1,13 @@
 import { createContext, useReducer } from "react";
-import { actions } from "./globals";
+import { actions, operations } from "./globals";
 import Button from "./Button/Button";
 import styles from "./App.module.css";
 
 export const CalculatorContext = createContext();
 
 const reducer = (state, action) => {
+  let result = 0;
+
   switch (action.type) {
     case actions.WRITE:
       if (state.screenContent === "0") {
@@ -34,6 +36,38 @@ const reducer = (state, action) => {
 
     case actions.RESET:
       return { screenContent: "0", operand: NaN, operation: "" };
+
+    case actions.SET_OPERATION:
+      return {
+        screenContent: "0",
+        operand: parseFloat(state.screenContent),
+        operation: action.value,
+      };
+
+    case actions.COMPUTE:
+      if (isNaN(state.operand)) {
+        return state;
+      }
+
+      switch (state.operation) {
+        case operations.ADD:
+          result = state.operand + parseFloat(state.screenContent);
+          break;
+        case operations.SUBSTRACT:
+          result = state.operand - parseFloat(state.screenContent);
+          break;
+        case operations.MULTIPLY:
+          result = state.operand * parseFloat(state.screenContent);
+          break;
+        case operations.DIVIDE:
+          result = state.operand / parseFloat(state.screenContent);
+          break;
+      }
+
+      return {
+        screenContent: `${result}`,
+        operand: NaN,
+      };
   }
 };
 

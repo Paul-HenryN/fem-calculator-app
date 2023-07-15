@@ -5,6 +5,14 @@ import styles from "./App.module.css";
 
 export const CalculatorContext = createContext();
 
+function toOutput(number) {
+  return number.toLocaleString("en-us");
+}
+
+function toNumber(str) {
+  return parseFloat(str.replace(/,/g, ""));
+}
+
 const reducer = (state, action) => {
   let result = 0;
 
@@ -20,11 +28,18 @@ const reducer = (state, action) => {
         if (state.screenContent.includes(".")) {
           return state;
         }
+
+        return {
+          ...state,
+          screenContent: `${state.screenContent}${action.value}`,
+        };
       }
 
       return {
         ...state,
-        screenContent: `${state.screenContent}${action.value}`,
+        screenContent: toOutput(
+          toNumber(`${state.screenContent}${action.value}`)
+        ),
       };
 
     case actions.DELETE:
@@ -40,7 +55,7 @@ const reducer = (state, action) => {
     case actions.SET_OPERATION:
       return {
         screenContent: "0",
-        operand: parseFloat(state.screenContent),
+        operand: toNumber(state.screenContent),
         operation: action.value,
       };
 
@@ -51,21 +66,21 @@ const reducer = (state, action) => {
 
       switch (state.operation) {
         case operations.ADD:
-          result = state.operand + parseFloat(state.screenContent);
+          result = state.operand + toNumber(state.screenContent);
           break;
         case operations.SUBSTRACT:
-          result = state.operand - parseFloat(state.screenContent);
+          result = state.operand - toNumber(state.screenContent);
           break;
         case operations.MULTIPLY:
-          result = state.operand * parseFloat(state.screenContent);
+          result = state.operand * toNumber(state.screenContent);
           break;
         case operations.DIVIDE:
-          result = state.operand / parseFloat(state.screenContent);
+          result = state.operand / toNumber(state.screenContent);
           break;
       }
 
       return {
-        screenContent: `${result}`,
+        screenContent: toOutput(result),
         operand: NaN,
       };
   }

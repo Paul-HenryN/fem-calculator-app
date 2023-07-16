@@ -1,28 +1,15 @@
-.btn {
-  --shadow-color: black;
-  box-shadow: 0px 5px 0px 0px var(--shadow-color);
-  border: none;
-  outline: none;
-
-  border-radius: 0.2em;
-}
-.btn:active {
-  transform: translateY(3px);
-  box-shadow: 0px 1px 0px 0px var(--shadow-color);
-}
-
-.btn_th1 {
+.btn_normal_th1 {
   background-color: var(--clr-neutral--th1);
   --shadow-color: var(--clr-neutral-dark--th1);
   color: var(--clr-txt-dark--th1);
 }
-.btn_th2 {
+.btn_normal_th2 {
   background-color: var(--clr-neutral--th2);
   --shadow-color: var(--clr-neutral-dark--th2);
   color: var(--clr-txt-dark--th2);
 }
-.btn_th3 {
+.btn_normal_th3 {
   background-color: var(--clr-primary-dark-300--th3);
-  --shadow-color: var(--clr-primary-light-100--th3);
+  --shadow-color: var(--clr-primary-dark-100--th3);
   color: var(--clr-txt-light-100--th3);
 }

@@ -1,0 +1,15 @@
+.btn_primary_th1 {
+  background-color: var(--clr-accent--th1);
+  --shadow-color: var(--clr-accent-dark--th1);
+  color: var(--clr-txt-light--th1);
+}
+.btn_primary_th2 {
+  background-color: var(--clr-accent-2--th2);
+  --shadow-color: var(--clr-accent-2-dark--th2);
+  color: var(--clr-txt-light--th2);
+}
+.btn_primary_th3 {
+  background-color: var(--clr-accent--th3);
+  --shadow-color: var(--clr-accent-light--th3);
+  color: var(--clr-txt-dark--th3);
+}

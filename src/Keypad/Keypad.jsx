@@ -1,8 +1,10 @@
-import Button from "../Button/Button";
+import NormalButton from "../Buttons/NormalButton/NormalButton";
 import { actions } from "../globals";
 import { ThemeContext } from "../App";
 import styles from "./Keypad.module.css";
 import { useContext } from "react";
+import PrimaryButton from "../Buttons/PrimaryButton/PrimaryButton";
+import SecondaryButton from "../Buttons/SecondaryButton/SecondaryButton";
 
 export default function Keypad() {
   const theme = useContext(ThemeContext);
@@ -22,30 +24,40 @@ export default function Keypad() {
 
   return (
     <div className={keypadClass}>
-      <Button>7</Button>
-      <Button>8</Button>
-      <Button>9</Button>
-      <Button className="fs-medium" action={actions.DELETE}>
+      <NormalButton>7</NormalButton>
+      <NormalButton>8</NormalButton>
+      <NormalButton>9</NormalButton>
+
+      <SecondaryButton className="fs-medium" action={actions.DELETE}>
         DEL
-      </Button>
-      <Button>4</Button>
-      <Button>5</Button>
-      <Button>6</Button>
-      <Button action={actions.SET_OPERATION}>+</Button>
-      <Button>1</Button>
-      <Button>2</Button>
-      <Button>3</Button>
-      <Button action={actions.SET_OPERATION}>-</Button>
-      <Button>.</Button>
-      <Button>0</Button>
-      <Button action={actions.SET_OPERATION}>/</Button>
-      <Button action={actions.SET_OPERATION}>x</Button>
-      <Button className="fs-medium grid-col-span-2" action={actions.RESET}>
+      </SecondaryButton>
+
+      <NormalButton>4</NormalButton>
+      <NormalButton>5</NormalButton>
+      <NormalButton>6</NormalButton>
+      <NormalButton action={actions.SET_OPERATION}>+</NormalButton>
+      <NormalButton>1</NormalButton>
+      <NormalButton>2</NormalButton>
+      <NormalButton>3</NormalButton>
+      <NormalButton action={actions.SET_OPERATION}>-</NormalButton>
+      <NormalButton>.</NormalButton>
+      <NormalButton>0</NormalButton>
+      <NormalButton action={actions.SET_OPERATION}>/</NormalButton>
+      <NormalButton action={actions.SET_OPERATION}>x</NormalButton>
+
+      <SecondaryButton
+        className="fs-medium grid-col-span-2"
+        action={actions.RESET}
+      >
         RESET
-      </Button>
-      <Button className="fs-medium grid-col-span-2" action={actions.COMPUTE}>
+      </SecondaryButton>
+
+      <PrimaryButton
+        className="fs-medium grid-col-span-2"
+        action={actions.COMPUTE}
+      >
         =
-      </Button>
+      </PrimaryButton>
     </div>
   );
 }

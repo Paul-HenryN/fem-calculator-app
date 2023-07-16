@@ -102,7 +102,7 @@ export default function App() {
     operation: "",
   });
 
-  const [theme, setTheme] = useState(1);
+  const [theme, setTheme] = useState(3);
 
   let containerClass = styles.container;
 

@@ -1,9 +1,10 @@
-import { createContext, useReducer } from "react";
+import { createContext, useReducer, useState } from "react";
 import { actions, operations } from "./globals";
 import Button from "./Button/Button";
 import styles from "./App.module.css";
 
 export const CalculatorContext = createContext();
+export const ThemeContext = createContext();
 
 function toOutput(number) {
   return number.toLocaleString("en-us");
@@ -98,57 +99,81 @@ export default function App() {
     operation: "",
   });
 
+  const [theme, setTheme] = useState(3);
+
+  let containerClass = styles.container;
+  let screenClass = styles.calculator__screen;
+  let keypadClass = styles.calculator__keypad;
+
+  switch (theme) {
+    case 1:
+      containerClass += ` ${styles.container_th1}`;
+      screenClass += ` ${styles.calculator__screen_th1}`;
+      keypadClass += ` ${styles.calculator__keypad_th1}`;
+      break;
+    case 2:
+      containerClass += ` ${styles.container_th2}`;
+      screenClass += ` ${styles.calculator__screen_th2}`;
+      keypadClass += ` ${styles.calculator__keypad_th2}`;
+      break;
+    case 3:
+      containerClass += ` ${styles.container_th3}`;
+      screenClass += ` ${styles.calculator__screen_th3}`;
+      keypadClass += ` ${styles.calculator__keypad_th3}`;
+      break;
+  }
+
   return (
-    <div className={styles.container}>
+    <div className={containerClass}>
       <CalculatorContext.Provider value={dispatch}>
-        <h1 className="sr-only">Calculator App</h1>
+        <ThemeContext.Provider value={theme}>
+          <h1 className="sr-only">Calculator App</h1>
 
-        <div className={styles.calculator}>
-          <header className={styles.calculator__header}>
-            <p>calc</p>
-            <div className="theme-toggler">
-              <p className="fs-small">THEME</p>
-              <div className="toggle"></div>
+          <div className={styles.calculator}>
+            <header className={styles.calculator__header}>
+              <p>calc</p>
+              <div className="theme-toggler">
+                <p className="fs-small">THEME</p>
+                <div className="toggle"></div>
+              </div>
+            </header>
+
+            <div className={`${screenClass} fs-big`}>{state.screenContent}</div>
+
+            <div className={keypadClass}>
+              <Button>7</Button>
+              <Button>8</Button>
+              <Button>9</Button>
+              <Button className="fs-medium" action={actions.DELETE}>
+                DEL
+              </Button>
+              <Button>4</Button>
+              <Button>5</Button>
+              <Button>6</Button>
+              <Button action={actions.SET_OPERATION}>+</Button>
+              <Button>1</Button>
+              <Button>2</Button>
+              <Button>3</Button>
+              <Button action={actions.SET_OPERATION}>-</Button>
+              <Button>.</Button>
+              <Button>0</Button>
+              <Button action={actions.SET_OPERATION}>/</Button>
+              <Button action={actions.SET_OPERATION}>x</Button>
+              <Button
+                className="fs-medium grid-col-span-2"
+                action={actions.RESET}
+              >
+                RESET
+              </Button>
+              <Button
+                className="fs-medium grid-col-span-2"
+                action={actions.COMPUTE}
+              >
+                =
+              </Button>
             </div>
-          </header>
-
-          <div className={`${styles.calculator__screen} fs-big`}>
-            {state.screenContent}
           </div>
-
-          <div className={styles.calculator__keypad}>
-            <Button>7</Button>
-            <Button>8</Button>
-            <Button>9</Button>
-            <Button className="fs-medium" action={actions.DELETE}>
-              DEL
-            </Button>
-            <Button>4</Button>
-            <Button>5</Button>
-            <Button>6</Button>
-            <Button action={actions.SET_OPERATION}>+</Button>
-            <Button>1</Button>
-            <Button>2</Button>
-            <Button>3</Button>
-            <Button action={actions.SET_OPERATION}>-</Button>
-            <Button>.</Button>
-            <Button>0</Button>
-            <Button action={actions.SET_OPERATION}>/</Button>
-            <Button action={actions.SET_OPERATION}>x</Button>
-            <Button
-              className="fs-medium grid-col-span-2"
-              action={actions.RESET}
-            >
-              RESET
-            </Button>
-            <Button
-              className="fs-medium grid-col-span-2"
-              action={actions.COMPUTE}
-            >
-              =
-            </Button>
-          </div>
-        </div>
+        </ThemeContext.Provider>
       </CalculatorContext.Provider>
     </div>
   );

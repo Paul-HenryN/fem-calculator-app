@@ -69,13 +69,28 @@ const reducer = (state, action) => {
       };
 
     case actions.RESET:
-      return { screenContent: "0", operand: NaN, operation: "" };
+      return {
+        screenContent: "0",
+        operand: NaN,
+        operation: "",
+        resultMode: false,
+        setOperationMode: false,
+      };
 
     case actions.SET_OPERATION:
+      if (state.setOperationMode) {
+        return {
+          ...state,
+          operation: action.value,
+        };
+      }
+
       return {
+        ...state,
         screenContent: "0",
         operand: toNumber(state.screenContent),
         operation: action.value,
+        setOperationMode: true,
       };
 
     case actions.COMPUTE:
@@ -114,6 +129,7 @@ export default function App() {
     operand: NaN,
     operation: "",
     resultMode: false,
+    setOperationMode: false,
   });
 
   const [theme, setTheme] = useState(1);

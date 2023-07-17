@@ -1,7 +1,7 @@
 import { createContext, useReducer, useState } from "react";
 import Screen from "./Screen/Screen";
 import Keypad from "./Keypad/Keypad";
-import { actions, operations } from "./globals";
+import { MAX_WRITE, actions, operations } from "./globals";
 import styles from "./App.module.css";
 import ThemeToggler from "./ThemeToggler/ThemeToggler";
 
@@ -9,7 +9,7 @@ export const CalculatorContext = createContext();
 export const ThemeContext = createContext();
 
 function toOutput(number) {
-  return number.toLocaleString("en-us");
+  return number.toLocaleString("en-us", { maximumFractionDigits: 15 });
 }
 
 function toNumber(str) {
@@ -25,6 +25,14 @@ const reducer = (state, action) => {
 
   switch (action.type) {
     case actions.WRITE:
+      if (state.screenContent.length >= MAX_WRITE) {
+        return state;
+      }
+
+      if (state.resultMode) {
+        return { ...state, screenContent: action.value, resultMode: false };
+      }
+
       if (state.screenContent === "0") {
         if (action.value !== ".") {
           return { ...state, screenContent: action.value };
@@ -92,6 +100,7 @@ const reducer = (state, action) => {
       return {
         screenContent: toOutput(result),
         operand: NaN,
+        resultMode: true,
       };
   }
 };
@@ -101,6 +110,7 @@ export default function App() {
     screenContent: "0",
     operand: NaN,
     operation: "",
+    resultMode: false,
   });
 
   const [theme, setTheme] = useState(1);

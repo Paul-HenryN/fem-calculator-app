@@ -14,3 +14,5 @@ export const operations = {
 };
 
 export const themes = ["blue", "white", "purple"];
+
+export const MAX_WRITE = 17;

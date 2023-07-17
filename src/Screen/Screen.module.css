@@ -5,9 +5,13 @@
   border-radius: 0.3em;
 
   overflow: hidden;
+}
+.calculator__screen * {
+  overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
 }
+
 .calculator__screen_th1 {
   background-color: var(--clr-primary-dark-500--th1);
 }

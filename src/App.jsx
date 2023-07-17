@@ -3,6 +3,7 @@ import Screen from "./Screen/Screen";
 import Keypad from "./Keypad/Keypad";
 import { actions, operations } from "./globals";
 import styles from "./App.module.css";
+import ThemeToggler from "./ThemeToggler/ThemeToggler";
 
 export const CalculatorContext = createContext();
 export const ThemeContext = createContext();
@@ -102,7 +103,7 @@ export default function App() {
     operation: "",
   });
 
-  const [theme, setTheme] = useState(3);
+  const [theme, setTheme] = useState(1);
 
   let containerClass = styles.container;
 
@@ -114,6 +115,7 @@ export default function App() {
       containerClass += ` ${styles.container_th2}`;
       break;
     case 3:
+    default:
       containerClass += ` ${styles.container_th3}`;
       break;
   }
@@ -127,10 +129,8 @@ export default function App() {
           <div className={styles.calculator}>
             <header className={styles.calculator__header}>
               <p>calc</p>
-              <div className="theme-toggler">
-                <p className="fs-small">THEME</p>
-                <div className="toggle"></div>
-              </div>
+
+              <ThemeToggler setTheme={setTheme} />
             </header>
 
             <Screen>{state.screenContent}</Screen>

@@ -18,6 +18,7 @@ export default function Keypad() {
       keypadClass += ` ${styles.calculator__keypad_th2}`;
       break;
     case 3:
+    default:
       keypadClass += ` ${styles.calculator__keypad_th3}`;
       break;
   }

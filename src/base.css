@@ -6,3 +6,12 @@ body {
   color: var(--clr-txt-dark--th1);
   background-color: white;
 }
+
+button {
+  border: none;
+  background: none;
+  cursor: pointer;
+
+  font: inherit;
+  color: inherit;
+}

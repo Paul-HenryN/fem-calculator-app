@@ -14,6 +14,7 @@ export default function Screen({ children }) {
       screenClass += ` ${styles.calculator__screen_th2}`;
       break;
     case 3:
+    default:
       screenClass += ` ${styles.calculator__screen_th3}`;
       break;
   }

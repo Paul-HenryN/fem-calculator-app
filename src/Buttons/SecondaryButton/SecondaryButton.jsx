@@ -16,6 +16,7 @@ export default function SecondaryButton({ children, className, action }) {
       btnClass += ` ${styles.btn_secondary_th2}`;
       break;
     case 3:
+    default:
       btnClass += ` ${styles.btn_secondary_th3}`;
       break;
   }

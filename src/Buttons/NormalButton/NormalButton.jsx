@@ -16,6 +16,7 @@ export default function NormalButton({ children, className, action }) {
       btnClass += ` ${styles.btn_normal_th2}`;
       break;
     case 3:
+    default:
       btnClass += ` ${styles.btn_normal_th3}`;
       break;
   }

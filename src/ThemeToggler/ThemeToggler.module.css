@@ -1,0 +1,39 @@
+.toggler {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+
+  gap: 5px;
+}
+
+.toggler__themeList {
+  display: flex;
+  justify-content: space-around;
+}
+
+.toggler__slider {
+  --slider-width: 80px;
+  --padding-x: calc(20 / 100 * var(--slider-width));
+
+  padding: 5px var(--padding-x);
+  border-radius: 1.5rem;
+
+  display: flex;
+  width: var(--slider-width);
+
+  background-color: blue;
+}
+
+.toggler__btn {
+  --radius: 9px;
+  --diameter: calc(var(--radius) * 2);
+  --inner-slider-width: calc(var(--slider-width) - 2 * var(--padding-x));
+
+  border-radius: 50%;
+
+  width: var(--diameter);
+  height: var(--diameter);
+
+  background-color: red;
+  transition: translate 200ms ease-out;
+}

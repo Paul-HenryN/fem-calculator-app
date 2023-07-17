@@ -12,3 +12,5 @@ export const operations = {
   DIVIDE: "/",
   MULTIPLY: "x",
 };
+
+export const themes = ["blue", "white", "purple"];

@@ -56,7 +56,10 @@ const reducer = (state, action) => {
       };
 
     case actions.DELETE:
-      if (state.screenContent.length === 1) {
+      if (
+        isNaN(toNumber(state.screenContent.slice(0, -1))) ||
+        state.screenContent.length === 1
+      ) {
         return { ...state, screenContent: "0" };
       }
 

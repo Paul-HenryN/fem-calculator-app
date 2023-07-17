@@ -16,6 +16,9 @@
   background-color: var(--clr-primary-dark-500--th3);
   color: var(--clr-txt-light-100--th3);
 }
+.container * {
+  transition: background 150ms ease-out, color 150ms ease-out;
+}
 
 .calculator {
   display: flex;

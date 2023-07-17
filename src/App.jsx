@@ -90,7 +90,7 @@ const reducer = (state, action) => {
         return {
           ...state,
           operation: action.value,
-          memoryContent: `${state.operand} ${action.value}`,
+          memoryContent: `${toOutput(state.operand)} ${action.value}`,
         };
       }
 
@@ -100,7 +100,7 @@ const reducer = (state, action) => {
         operand: toNumber(state.screenContent),
         operation: action.value,
         setOperationMode: true,
-        memoryContent: `${toNumber(state.screenContent)} ${action.value}`,
+        memoryContent: `${state.screenContent} ${action.value}`,
       };
 
     case actions.COMPUTE:
@@ -131,7 +131,9 @@ const reducer = (state, action) => {
         operand: NaN,
         resultMode: true,
         setOperationMode: false,
-        memoryContent: `${state.operand} ${state.operation} ${state.screenContent} =`,
+        memoryContent: `${toOutput(state.operand)} ${state.operation} ${
+          state.screenContent
+        } =`,
       };
   }
 };

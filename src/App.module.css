@@ -25,9 +25,15 @@
   flex-direction: column;
   gap: 1.5rem;
 
-  width: clamp(20rem, 80%, 30rem);
+  width: clamp(20rem, 88%, 30rem);
 }
 .calculator__header {
   display: flex;
   justify-content: space-between;
+  align-items: center;
+}
+.calculator__themeMenu {
+  display: flex;
+  align-items: flex-end;
+  gap: 2rem;
 }

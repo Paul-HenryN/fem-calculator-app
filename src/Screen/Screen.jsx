@@ -20,9 +20,9 @@ export default function Screen({ screenContent, memoryContent }) {
   }
 
   return (
-    <div className={`${screenClass} fs-big`}>
+    <div className={screenClass}>
       <p className="fs-small">&nbsp; {memoryContent}</p>
-      {screenContent}
+      <p className="fs-big">{screenContent}</p>
     </div>
   );
 }

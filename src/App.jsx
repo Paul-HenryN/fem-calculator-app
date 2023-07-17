@@ -166,7 +166,10 @@ export default function App() {
             <header className={styles.calculator__header}>
               <p>calc</p>
 
-              <ThemeToggler setTheme={setTheme} />
+              <div className={styles.calculator__themeMenu}>
+                <p className="fs-small">THEME</p>
+                <ThemeToggler setTheme={setTheme} />
+              </div>
             </header>
 
             <Screen

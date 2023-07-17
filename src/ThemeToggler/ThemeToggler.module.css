@@ -3,7 +3,7 @@
   flex-direction: column;
   align-items: stretch;
 
-  gap: 5px;
+  gap: 2px;
 }
 
 .toggler__themeList {
@@ -13,9 +13,9 @@
 
 .toggler__slider {
   --slider-width: 80px;
-  --padding-x: calc(20 / 100 * var(--slider-width));
+  --padding-x: calc(18 / 100 * var(--slider-width));
 
-  padding: 5px var(--padding-x);
+  padding: 6px var(--padding-x);
   border-radius: 1.5rem;
 
   display: flex;
@@ -32,7 +32,7 @@
 }
 
 .toggler__btn {
-  --radius: 9px;
+  --radius: 8px;
   --diameter: calc(var(--radius) * 2);
   --inner-slider-width: calc(var(--slider-width) - 2 * var(--padding-x));
 

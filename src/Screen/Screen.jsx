@@ -2,7 +2,7 @@ import { useContext } from "react";
 import { ThemeContext } from "../App";
 import styles from "./Screen.module.css";
 
-export default function Screen({ children }) {
+export default function Screen({ screenContent, memoryContent }) {
   const theme = useContext(ThemeContext);
   let screenClass = styles.calculator__screen;
 
@@ -19,5 +19,10 @@ export default function Screen({ children }) {
       break;
   }
 
-  return <div className={`${screenClass} fs-big`}>{children}</div>;
+  return (
+    <div className={`${screenClass} fs-big`}>
+      <p className="fs-small">&nbsp; {memoryContent}</p>
+      {screenContent}
+    </div>
+  );
 }

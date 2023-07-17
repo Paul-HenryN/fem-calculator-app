@@ -8,6 +8,15 @@ import ThemeToggler from "./ThemeToggler/ThemeToggler";
 export const CalculatorContext = createContext();
 export const ThemeContext = createContext();
 
+const initialState = {
+  screenContent: "0",
+  operand: NaN,
+  operation: "",
+  resultMode: false,
+  setOperationMode: false,
+  memoryContent: "",
+};
+
 function toOutput(number) {
   return number.toLocaleString("en-us", { maximumFractionDigits: 15 });
 }
@@ -30,7 +39,12 @@ const reducer = (state, action) => {
       }
 
       if (state.resultMode) {
-        return { ...state, screenContent: action.value, resultMode: false };
+        return {
+          ...state,
+          screenContent: action.value,
+          resultMode: false,
+          memoryContent: "",
+        };
       }
 
       if (state.screenContent === "0") {
@@ -69,19 +83,14 @@ const reducer = (state, action) => {
       };
 
     case actions.RESET:
-      return {
-        screenContent: "0",
-        operand: NaN,
-        operation: "",
-        resultMode: false,
-        setOperationMode: false,
-      };
+      return initialState;
 
     case actions.SET_OPERATION:
       if (state.setOperationMode) {
         return {
           ...state,
           operation: action.value,
+          memoryContent: `${state.operand} ${action.value}`,
         };
       }
 
@@ -91,6 +100,7 @@ const reducer = (state, action) => {
         operand: toNumber(state.screenContent),
         operation: action.value,
         setOperationMode: true,
+        memoryContent: `${toNumber(state.screenContent)} ${action.value}`,
       };
 
     case actions.COMPUTE:
@@ -116,21 +126,18 @@ const reducer = (state, action) => {
       }
 
       return {
+        ...state,
         screenContent: toOutput(result),
         operand: NaN,
         resultMode: true,
+        setOperationMode: false,
+        memoryContent: `${state.operand} ${state.operation} ${state.screenContent} =`,
       };
   }
 };
 
 export default function App() {
-  const [state, dispatch] = useReducer(reducer, {
-    screenContent: "0",
-    operand: NaN,
-    operation: "",
-    resultMode: false,
-    setOperationMode: false,
-  });
+  const [state, dispatch] = useReducer(reducer, initialState);
 
   const [theme, setTheme] = useState(1);
 
@@ -162,7 +169,10 @@ export default function App() {
               <ThemeToggler setTheme={setTheme} />
             </header>
 
-            <Screen>{state.screenContent}</Screen>
+            <Screen
+              screenContent={state.screenContent}
+              memoryContent={state.memoryContent}
+            />
 
             <Keypad />
           </div>

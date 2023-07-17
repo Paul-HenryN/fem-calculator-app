@@ -20,8 +20,15 @@
 
   display: flex;
   width: var(--slider-width);
-
-  background-color: blue;
+}
+.toggler_th1 .toggler__slider {
+  background-color: var(--clr-primary-dark-400--th1);
+}
+.toggler_th2 .toggler__slider {
+  background-color: var(--clr-primary-light-100--th2);
+}
+.toggler_th3 .toggler__slider {
+  background-color: var(--clr-primary-dark-400--th3);
 }
 
 .toggler__btn {
@@ -34,6 +41,14 @@
   width: var(--diameter);
   height: var(--diameter);
 
-  background-color: red;
   transition: translate 200ms ease-out;
+}
+.toggler_th1 .toggler__btn {
+  background-color: var(--clr-accent--th1);
+}
+.toggler_th2 .toggler__btn {
+  background-color: var(--clr-accent-2--th2);
+}
+.toggler_th3 .toggler__btn {
+  background-color: var(--clr-accent--th3);
 }

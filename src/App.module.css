@@ -4,7 +4,7 @@
   display: grid;
   place-items: center;
 
-  padding-block: 7vw;
+  padding-block: 3vw 7vw;
 }
 .container_th1 {
   background-color: var(--clr-primary-dark-300--th1);
